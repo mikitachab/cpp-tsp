@@ -4,55 +4,60 @@
 
 #include "CostMatrix.h"
 
-void CostMatrix::readFromFile(std::string filename) {
+bool CostMatrix::readFromFile(const std::string &filename)
+{
     std::ifstream inFile;
 
     inFile.open(filename);
-    if (!inFile){
-        std::cout << "Unable to open file " << filename <<std::endl;
+    if (!inFile)
+    {
+        std::cout << "Unable to open file " << filename << std::endl;
+        return false;
     }
 
     inFile >> this->size;
-    std::vector<std::vector<int>> matrix (size,std::vector<int>(size, 0));
-    // matrix alloc
-    // this->costMatrix = new int*[this->size];
-    // for (int i = 0; i < this->size; i++){
-    //     costMatrix[i] = new int[this->size];
-    // }
+    std::vector<std::vector<int>> matrix(size, std::vector<int>(size, 0));
 
-    // fill matrix
-
-    try {
-        for (int i = 0; i < this->size; ++i) {
-            for (int j = 0; j < this->size; ++j) {
+    try
+    {
+        for (int i = 0; i < this->size; ++i)
+        {
+            for (int j = 0; j < this->size; ++j)
+            {
                 inFile >> matrix[i][j];
             }
         }
-    } catch (std::exception e) {
+    }
+    catch (std::exception e)
+    {
         std::cout << "File " << filename << " has bad format, unable to parse matrix" << std::endl;
+        return false;
     }
-    costMatrix = matrix;
+    costMatrix = std::move(matrix);
+    return true;
 }
 
-void CostMatrix::print(){
-    for (int i = 0; i < size; i++){
-        for(int j = 0; j < size; j++){
-            std::cout<< costMatrix[i][j]<<" ";
+void CostMatrix::print()
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            std::cout << costMatrix[i][j] << " ";
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     }
 }
 
-
-int CostMatrix::computeCost(int* path){
-
+int CostMatrix::computeCost(const std::vector<int> &path)
+{
     int cost = costMatrix[0][path[0]];
-    int i = 0;
-    for(; i < size-2;i++) {
-        cost += costMatrix[path[i]][path[i+1]];
+
+    for (int i = 0; i < path.size() - 1; i++)
+    {
+        cost += costMatrix[path[i]][path[i + 1]];
     }
-    cost += costMatrix[i+1][0];
+    cost += costMatrix[path.back()][0];
+
     return cost;
 }
-
-

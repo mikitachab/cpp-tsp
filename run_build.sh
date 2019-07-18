@@ -6,7 +6,7 @@ src_path="src/*.cpp"
 output_path="./build/tsp"
 
 echo "Building..."
-g++ $cpp_version -I $include_path $src_path -lncurses -pthread -o $output_path
+g++ $cpp_version -I $include_path $src_path -o $output_path
 
 build_err=$?
 if [ $build_err -ne 0 ]

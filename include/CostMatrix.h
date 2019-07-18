@@ -7,20 +7,21 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include<vector>
+#include <vector>
 
-
-class CostMatrix {
+class CostMatrix
+{
 public:
     int size{0};
-    // int** costMatrix;
     std::vector<std::vector<int>> costMatrix;
-    void readFromFile(std::string filename);
-    void print();
-    int computeCost(int* path);
+    int computeCost(const std::vector<int> &path);
 
+    bool readFromFile(const std::string &filename);
+    void print();
+
+    CostMatrix() = default;
+    CostMatrix(const CostMatrix &matrix) = delete;
     virtual ~CostMatrix() = default;
 };
-
 
 #endif //CPP_TSP_COSTMATRIX_H
