@@ -63,10 +63,11 @@ int main() {
 
     CostMatrix matrix;
     matrix.readFromFile(filename);
-    TSPResult* result; 
+    matrix.print();
+    // TSPResult* result; 
 
-    result =  TSPBruteForce(matrix);
-    printResult(result, matrix.size-1);
+    // result =  TSPBruteForce(matrix);
+    // printResult(result, matrix.size-1);
 
     return 0;
 }

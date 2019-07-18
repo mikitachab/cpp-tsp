@@ -13,23 +13,25 @@ void CostMatrix::readFromFile(std::string filename) {
     }
 
     inFile >> this->size;
-
+    std::vector<std::vector<int>> matrix (size,std::vector<int>(size, 0));
     // matrix alloc
-    this->costMatrix = new int*[this->size];
-    for (int i = 0; i < this->size; i++){
-        costMatrix[i] = new int[this->size];
-    }
+    // this->costMatrix = new int*[this->size];
+    // for (int i = 0; i < this->size; i++){
+    //     costMatrix[i] = new int[this->size];
+    // }
 
     // fill matrix
+
     try {
         for (int i = 0; i < this->size; ++i) {
             for (int j = 0; j < this->size; ++j) {
-                inFile >> costMatrix[i][j];
+                inFile >> matrix[i][j];
             }
         }
     } catch (std::exception e) {
         std::cout << "File " << filename << " has bad format, unable to parse matrix" << std::endl;
     }
+    costMatrix = matrix;
 }
 
 void CostMatrix::print(){
@@ -53,10 +55,4 @@ int CostMatrix::computeCost(int* path){
     return cost;
 }
 
-
-CostMatrix::~CostMatrix() {
-    for (int i = 0; i < size; ++i)
-        delete [] this->costMatrix[i];
-    delete [] this->costMatrix;
-}
 

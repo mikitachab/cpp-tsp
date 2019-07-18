@@ -7,18 +7,19 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include<vector>
 
 
 class CostMatrix {
 public:
     int size{0};
-    int** costMatrix;
-
+    // int** costMatrix;
+    std::vector<std::vector<int>> costMatrix;
     void readFromFile(std::string filename);
     void print();
     int computeCost(int* path);
 
-    virtual ~CostMatrix();
+    virtual ~CostMatrix() = default;
 };
 
 
