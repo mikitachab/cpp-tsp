@@ -1,31 +1,28 @@
 #include <algorithm> // next_permutation, copy
 #include <iterator>  // back_inserter
 #include <limits>    // numeric_limits
+#include <numeric>   // itoa
 
 #include "TSPSolver.h"
 
-TSPResult *TSPSolver::solveBruteForce(CostMatrix &costs)
+TSPResult TSPSolver::solveBruteForce(CostMatrix &costs)
 {
-    std::vector<int> finalPath, currentPath;
+    size_t pathSize = costs.size - 1;
+    std::vector<int> finalPath, currentPath(pathSize);
+    std::iota(currentPath.begin(), currentPath.end(), 1);
+
     int finalCost = std::numeric_limits<int>::max();
     int currentCost;
-
-    for (int i = 1; i < costs.size; i++)
-    {
-        currentPath.push_back(i);
-    }
-
     do
     {
         currentCost = costs.computeCost(currentPath);
         if (currentCost < finalCost)
         {
             finalCost = currentCost;
-            std::copy(currentPath.begin(), currentPath.end(), std::back_inserter(finalPath));
+            finalPath = currentPath;
         }
 
     } while (std::next_permutation(currentPath.begin(), currentPath.end()));
 
-    TSPResult *result = new TSPResult(finalPath, finalCost);
-    return result;
+    return TSPResult(finalPath, finalCost);
 }

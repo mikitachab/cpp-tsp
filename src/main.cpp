@@ -7,7 +7,7 @@ void printResult(const TSPResult &result)
 {
     std::cout << "cost: " << result.cost << std::endl;
     std::cout << "path: ";
-    for (auto city : result.path)
+    for (const auto &city : result.path)
     {
         std::cout << city << " ";
     }
@@ -16,19 +16,21 @@ void printResult(const TSPResult &result)
 
 int main()
 {
-    const std::string filename = "file.txt";
+    const std::string fileName = "test-files/6_2.txt"; //TODO read from command argumets
 
     CostMatrix matrix;
-    matrix.readFromFile(filename);
+    bool ok = matrix.readFromFile(fileName);
+    if (!ok)
+    {
+        exit(1);
+    }
     matrix.print();
     std::cout << std::endl;
-
-    std::vector<int> path{1, 2, 3, 4, 5};
-
     TSPSolver solver;
-    TSPResult *result;
+    TSPResult result;
+
     result = solver.solveBruteForce(matrix);
-    printResult(*result);
+    printResult(result);
 
     return 0;
 }

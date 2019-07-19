@@ -11,10 +11,9 @@ struct TSPResult
 class TSPSolver
 {
 public:
-    TSPSolver() = default;
     virtual ~TSPSolver() = default;
 
     TSPResult result;
 
-    TSPResult *solveBruteForce(CostMatrix &costs);
+    TSPResult solveBruteForce(CostMatrix &costs);
 };

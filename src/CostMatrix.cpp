@@ -4,25 +4,23 @@
 
 #include "CostMatrix.h"
 
-bool CostMatrix::readFromFile(const std::string &filename)
+bool CostMatrix::readFromFile(const std::string &fileName)
 {
-    std::ifstream inFile;
-
-    inFile.open(filename);
-    if (!inFile)
+    std::ifstream inFile(fileName);
+    if (!inFile.is_open())
     {
-        std::cout << "Unable to open file " << filename << std::endl;
+        std::cout << "Unable to open file " << fileName << std::endl;
         return false;
     }
 
-    inFile >> this->size;
+    inFile >> size;
     std::vector<std::vector<int>> matrix(size, std::vector<int>(size, 0));
 
     try
     {
-        for (int i = 0; i < this->size; ++i)
+        for (size_t i = 0; i < size; ++i)
         {
-            for (int j = 0; j < this->size; ++j)
+            for (size_t j = 0; j < size; ++j)
             {
                 inFile >> matrix[i][j];
             }
@@ -30,7 +28,7 @@ bool CostMatrix::readFromFile(const std::string &filename)
     }
     catch (std::exception e)
     {
-        std::cout << "File " << filename << " has bad format, unable to parse matrix" << std::endl;
+        std::cout << "File " << fileName << " has bad format, unable to parse matrix" << std::endl;
         return false;
     }
     costMatrix = std::move(matrix);

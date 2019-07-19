@@ -12,11 +12,11 @@
 class CostMatrix
 {
 public:
-    int size{0};
+    size_t size{0};
     std::vector<std::vector<int>> costMatrix;
     int computeCost(const std::vector<int> &path);
 
-    bool readFromFile(const std::string &filename);
+    bool readFromFile(const std::string &fileName);
     void print();
 
     CostMatrix() = default;
