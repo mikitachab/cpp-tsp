@@ -1,6 +1,3 @@
-//
-// Created by mikita on 17.07.19.
-//
 #ifndef CPP_TSP_COSTMATRIX_H
 #define CPP_TSP_COSTMATRIX_H
 

@@ -1,11 +1,12 @@
+#ifndef CPP_TSP_TSPSOLVER_H
+#define CPP_TSP_TSPSOLVER_H
+
 #include "CostMatrix.h"
 
 struct TSPResult
 {
-    int cost;
     std::vector<int> path;
-    TSPResult() = default;
-    TSPResult(std::vector<int> path, int cost) : path(path), cost(cost) {}
+    int cost;
 };
 
 class TSPSolver
@@ -13,7 +14,7 @@ class TSPSolver
 public:
     virtual ~TSPSolver() = default;
 
-    TSPResult result;
-
     TSPResult solveBruteForce(CostMatrix &costs);
 };
+
+#endif //CPP_TSP_TSPSOLVER_H

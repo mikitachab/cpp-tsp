@@ -1,7 +1,3 @@
-//
-// Created by mikita on 17.07.19.
-//
-
 #include "CostMatrix.h"
 
 bool CostMatrix::readFromFile(const std::string &fileName)

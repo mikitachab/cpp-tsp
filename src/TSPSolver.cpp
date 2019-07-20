@@ -24,5 +24,6 @@ TSPResult TSPSolver::solveBruteForce(CostMatrix &costs)
 
     } while (std::next_permutation(currentPath.begin(), currentPath.end()));
 
-    return TSPResult(finalPath, finalCost);
+    TSPResult result{finalPath, finalCost};
+    return result;
 }

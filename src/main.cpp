@@ -27,9 +27,8 @@ int main()
     matrix.print();
     std::cout << std::endl;
     TSPSolver solver;
-    TSPResult result;
 
-    result = solver.solveBruteForce(matrix);
+    TSPResult result = solver.solveBruteForce(matrix);
     printResult(result);
 
     return 0;
