@@ -13,7 +13,6 @@ public:
     std::vector<std::vector<int>> costMatrix;
     int computeCost(const std::vector<int> &path);
 
-    bool readFromFile(const std::string &fileName);
     void print();
     CostMatrix(std::vector<std::vector<int>> matrix) : costMatrix(matrix), size(matrix.size()) {}
     CostMatrix() = default;

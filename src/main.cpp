@@ -17,9 +17,13 @@ void printResult(const TSPResult &result)
     std::cout << std::endl;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    const std::string fileName = "test-files/6_2.txt"; //TODO read from command argumets
+    std::string fileName = "test-files/6_2.txt"; 
+    if(argc >= 2){
+        fileName = std::string(argv[1]);
+    } 
+    std::cout<<"matrix from: " << fileName << std::endl;
 
     CostMatrix* matrix = readMatrixFromFile(fileName);
 
