@@ -15,7 +15,7 @@ public:
 
     bool readFromFile(const std::string &fileName);
     void print();
-
+    CostMatrix(std::vector<std::vector<int>> matrix) : costMatrix(matrix), size(matrix.size()) {}
     CostMatrix() = default;
     CostMatrix(const CostMatrix &matrix) = delete;
     virtual ~CostMatrix() = default;

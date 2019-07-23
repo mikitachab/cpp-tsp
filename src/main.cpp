@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
-#include "CostMatrix.h"
-#include "TSPSolver.h"
+
+#include "CostMatrix.hpp"
+#include "TSPSolver.hpp"
+#include "TSPUtils.hpp"
+
 
 void printResult(const TSPResult &result)
 {
@@ -18,17 +21,16 @@ int main()
 {
     const std::string fileName = "test-files/6_2.txt"; //TODO read from command argumets
 
-    CostMatrix matrix;
-    bool ok = matrix.readFromFile(fileName);
-    if (!ok)
-    {
+    CostMatrix* matrix = readMatrixFromFile(fileName);
+
+    if (!matrix){
+        std::cerr << "Matrix is invalid. Unaple to perform " << std::endl;
         exit(1);
     }
-    matrix.print();
-    std::cout << std::endl;
+    matrix->print();
     TSPSolver solver;
 
-    TSPResult result = solver.solveBruteForce(matrix);
+    TSPResult result = solver.solveBruteForce(*matrix);
     printResult(result);
 
     return 0;

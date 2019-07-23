@@ -1,9 +1,9 @@
 #include <algorithm> // next_permutation, copy
 #include <iterator>  // back_inserter
 #include <limits>    // numeric_limits
-#include <numeric>   // itoa
+#include <numeric>   // iota
 
-#include "TSPSolver.h"
+#include "TSPSolver.hpp"
 
 TSPResult TSPSolver::solveBruteForce(CostMatrix &costs)
 {

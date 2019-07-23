@@ -1,4 +1,4 @@
-#include "CostMatrix.h"
+#include "CostMatrix.hpp"
 
 bool CostMatrix::readFromFile(const std::string &fileName)
 {

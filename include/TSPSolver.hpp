@@ -1,7 +1,7 @@
 #ifndef CPP_TSP_TSPSOLVER_H
 #define CPP_TSP_TSPSOLVER_H
 
-#include "CostMatrix.h"
+#include "CostMatrix.hpp"
 
 struct TSPResult
 {
