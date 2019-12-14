@@ -8,10 +8,16 @@ struct TSPResult
     int cost;
 };
 
-class TSPSolver
+
+class ITSPSolver 
 {
 public:
-    virtual ~TSPSolver() = default;
+    virtual TSPResult solve(CostMatrix &costs) = 0;
+};
 
-    TSPResult solveBruteForce(CostMatrix &costs);
+
+class BruteForce: ITSPSolver 
+{
+public:
+    TSPResult solve(CostMatrix &costs);
 };

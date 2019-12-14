@@ -1,11 +1,11 @@
-#include <algorithm> // next_permutation, copy
+#include <algorithm> // next_permutation
 #include <iterator>  // back_inserter
 #include <limits>    // numeric_limits
 #include <numeric>   // iota
 
 #include "TSPSolver.hpp"
 
-TSPResult TSPSolver::solveBruteForce(CostMatrix &costs)
+TSPResult BruteForce::solve(CostMatrix &costs)
 {
     size_t pathSize = costs.size() - 1;
     std::vector<int> finalPath, currentPath(pathSize);

@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     std::vector<int> path{1,2,3,4,5};
     std::cout<<calcPathCost(matrix, path)<<std::endl;
     
-    TSPSolver solver = TSPSolver();
-    TSPResult result = solver.solveBruteForce(matrix);
-    std::cout<<result.cost<<std::endl;
+    BruteForce solver = BruteForce();
+    TSPResult result = solver.solve(matrix);
+    printResult(result);
     return 0;
 }
