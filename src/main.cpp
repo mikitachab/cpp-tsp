@@ -3,7 +3,6 @@
 
 #include "CostMatrix.hpp"
 #include "TSPSolver.hpp"
-#include "TSPUtils.hpp"
 
 
 void printResult(const TSPResult &result)
@@ -19,23 +18,29 @@ void printResult(const TSPResult &result)
 
 int main(int argc, char *argv[])
 {
-    std::string fileName = "test-files/6_2.txt"; 
+    std::string fileName = "test-files/6_1.txt"; 
     if(argc >= 2){
         fileName = std::string(argv[1]);
     } 
     std::cout<<"matrix from: " << fileName << std::endl;
 
-    CostMatrix* matrix = readMatrixFromFile(fileName);
+    CostMatrix matrix;
 
-    if (!matrix){
+    try{
+        matrix = readMatrixFromFile(fileName);
+    }
+    catch(std::invalid_argument &ia){
         std::cerr << "Matrix is invalid. Unaple to perform " << std::endl;
         exit(1);
-    }
-    matrix->print();
-    TSPSolver solver;
+    } 
 
-    TSPResult result = solver.solveBruteForce(*matrix);
-    printResult(result);
+    printMatrix(matrix);
 
+    std::vector<int> path{1,2,3,4,5};
+    std::cout<<calcPathCost(matrix, path)<<std::endl;
+    
+    TSPSolver solver = TSPSolver();
+    TSPResult result = solver.solveBruteForce(matrix);
+    std::cout<<result.cost<<std::endl;
     return 0;
 }

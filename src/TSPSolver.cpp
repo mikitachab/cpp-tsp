@@ -7,7 +7,7 @@
 
 TSPResult TSPSolver::solveBruteForce(CostMatrix &costs)
 {
-    size_t pathSize = costs.size - 1;
+    size_t pathSize = costs.size() - 1;
     std::vector<int> finalPath, currentPath(pathSize);
     std::iota(currentPath.begin(), currentPath.end(), 1);
 
@@ -15,7 +15,7 @@ TSPResult TSPSolver::solveBruteForce(CostMatrix &costs)
     int currentCost;
     do
     {
-        currentCost = costs.computeCost(currentPath);
+        currentCost = calcPathCost(costs, currentPath);
         if (currentCost < finalCost)
         {
             finalCost = currentCost;

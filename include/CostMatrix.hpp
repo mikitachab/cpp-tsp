@@ -1,23 +1,13 @@
-#ifndef CPP_TSP_COSTMATRIX_H
-#define CPP_TSP_COSTMATRIX_H
+#pragma once
 
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
+#include<vector>
+#include<string>
 
-class CostMatrix
-{
-public:
-    size_t size{0};
-    std::vector<std::vector<int>> costMatrix;
-    int computeCost(const std::vector<int> &path);
+typedef  std::vector<std::vector<int>> CostMatrix;
 
-    void print();
-    CostMatrix(std::vector<std::vector<int>> matrix) : costMatrix(matrix), size(matrix.size()) {}
-    CostMatrix() = default;
-    CostMatrix(const CostMatrix &matrix) = delete;
-    virtual ~CostMatrix() = default;
-};
+CostMatrix readMatrixFromFile(const std::string &fileName);
+void printMatrix(const CostMatrix& costMatrix);
+int calcPathCost(const CostMatrix& costMatrix, const std::vector<int> &path);
 
-#endif //CPP_TSP_COSTMATRIX_H
+
+

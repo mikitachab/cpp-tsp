@@ -1,5 +1,4 @@
-#ifndef CPP_TSP_TSPSOLVER_H
-#define CPP_TSP_TSPSOLVER_H
+#pragma once
 
 #include "CostMatrix.hpp"
 
@@ -16,5 +15,3 @@ public:
 
     TSPResult solveBruteForce(CostMatrix &costs);
 };
-
-#endif //CPP_TSP_TSPSOLVER_H
