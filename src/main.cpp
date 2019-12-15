@@ -16,12 +16,19 @@ void printResult(const TSPResult &result)
     std::cout << std::endl;
 }
 
+void evaluateSolver(ITSPSolver* solver, CostMatrix &matrix){
+    std::cout<<"evaluating " << solver->info()<<":"<<std::endl;
+    std::cout<<"matrix size: "<< matrix.size()<<std::endl;
+    TSPResult result = solver->solve(matrix);
+    printResult(result);
+}
+
 int main(int argc, char *argv[])
 {
     std::string fileName = "test-files/6_1.txt"; 
     if(argc >= 2){
         fileName = std::string(argv[1]);
-    } 
+    }
     std::cout<<"matrix from: " << fileName << std::endl;
 
     CostMatrix matrix;
@@ -30,17 +37,17 @@ int main(int argc, char *argv[])
         matrix = readMatrixFromFile(fileName);
     }
     catch(std::invalid_argument &ia){
-        std::cerr << "Matrix is invalid. Unaple to perform " << std::endl;
+        std::cerr << "Matrix is invalid. Unaple to solve" << std::endl;
         exit(1);
     } 
 
     printMatrix(matrix);
 
-    std::vector<int> path{1,2,3,4,5};
-    std::cout<<calcPathCost(matrix, path)<<std::endl;
-    
-    BruteForce solver = BruteForce();
-    TSPResult result = solver.solve(matrix);
-    printResult(result);
+    ITSPSolver *bf = new  BruteForce();
+    ITSPSolver *bb = new  BranchAndBound();
+
+    evaluateSolver(bf, matrix);
+    evaluateSolver(bb, matrix);
+
     return 0;
 }
