@@ -1,6 +1,7 @@
 #include "CostMatrix.hpp"
 #include "TSPSolver.hpp"
 #include "Node.hpp"
+#include "Utils.hpp"
 #include <vector>
 
 int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix);
@@ -52,7 +53,6 @@ TSPResult BranchAndBound::solve(CostMatrix &costs){
     }
 }
 
-
 int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix)
 {
     int cost = 0;
@@ -60,8 +60,7 @@ int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix)
     auto rowsMins = rowReduction(reducedMatrix);
     auto colsMins = columnReduction(reducedMatrix);
 
-    auto rowsColsMins = rowsMins;
-    rowsColsMins.insert(rowsColsMins.end(), colsMins.begin(), colsMins.end());
+    auto rowsColsMins = concat(rowsMins, colsMins);
 
     for(const auto& n: rowsColsMins){
         if(n != INF) {
@@ -109,7 +108,3 @@ std::vector<int> columnReduction(CostMatrix &reducedMatrix)
 
     return colsMins;
 }
-
-
-
-// original code src = https://www.techiedelight.com/travelling-salesman-problem-using-branch-and-bound/

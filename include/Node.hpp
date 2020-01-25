@@ -19,6 +19,6 @@ struct NodeComp {
     }
 };
 
-typedef std::priority_queue<Node*, std::vector<Node*>, NodeComp> NodesHeap;
+using NodesHeap = std::priority_queue<Node*, std::vector<Node*>, NodeComp>;
 
 Node* makeNode(CostMatrix parentMatrix, const std::vector<int> &path, int level, int from, int to);
