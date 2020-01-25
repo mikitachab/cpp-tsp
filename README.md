@@ -2,10 +2,9 @@
 
 Implementation of TSP solution in C++ using diffrerent algorithms
 
-
 ## Roadmap
 
--  Exact Algorithms:
+- Exact Algorithms:
     - [x] Brute Force
     - [x] Branch and Bound
     - [ ] Dynamic Programming
@@ -15,7 +14,8 @@ Implementation of TSP solution in C++ using diffrerent algorithms
 - Population Algorithm:
     - [ ] Genetic Algorithm
     - [ ] Ant Colony Optimization
-  
+- Create CLI
+    
 ## Helpfull links
 
 - [Branch and Bound](https://www.techiedelight.com/travelling-salesman-problem-using-branch-and-bound/)
