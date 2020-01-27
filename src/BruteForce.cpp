@@ -1,9 +1,10 @@
+#include "TSPSolver.hpp"
+
 #include <algorithm> // next_permutation
 #include <iterator>  // back_inserter
 #include <limits>    // numeric_limits
 #include <numeric>   // iota
 
-#include "TSPSolver.hpp"
 
 TSPResult BruteForce::solve(CostMatrix &costs)
 {

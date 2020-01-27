@@ -1,8 +1,8 @@
 #include "CostMatrix.hpp"
 #include "TSPSolver.hpp"
 #include "Node.hpp"
-#include "Utils.hpp"
 
+#include<boost/range/join.hpp>
 #include <vector>
 
 int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix);
@@ -61,9 +61,7 @@ int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix)
     auto rowsMins = rowReduction(reducedMatrix);
     auto colsMins = columnReduction(reducedMatrix);
 
-    auto rowsColsMins = concat(rowsMins, colsMins);
-
-    for(const auto& n: rowsColsMins){
+    for(const auto& n: boost::range::join(rowsMins, colsMins)){
         if(n != INF) {
             cost+=n;
         }

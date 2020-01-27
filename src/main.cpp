@@ -1,8 +1,8 @@
-#include <iostream>
-#include <string>
-
 #include "CostMatrix.hpp"
 #include "TSPSolver.hpp"
+
+#include <iostream>
+#include <string>
 
 
 void printResult(const TSPResult &result)
@@ -26,17 +26,20 @@ void evaluateSolver(ITSPSolver* solver, CostMatrix &matrix){
 int main(int argc, char *argv[])
 {
     std::string fileName = "test-files/6_1.txt"; 
-    if(argc >= 2){
+    if(argc >= 2)
+    {
         fileName = std::string(argv[1]);
     }
     std::cout<<"matrix from: " << fileName << std::endl;
 
     CostMatrix matrix;
 
-    try{
+    try
+    {
         matrix = readMatrixFromFile(fileName);
     }
-    catch(std::invalid_argument &ia){
+    catch(std::invalid_argument &ia)
+    {
         std::cerr << "Matrix is invalid. Unaple to solve" << std::endl;
         exit(1);
     } 
