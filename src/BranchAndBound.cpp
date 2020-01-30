@@ -1,9 +1,9 @@
-#include "CostMatrix.hpp"
-#include "TSPSolver.hpp"
-#include "Node.hpp"
+#include"CostMatrix.hpp"
+#include"TSPSolver.hpp"
+#include"Node.hpp"
 
 #include<boost/range/join.hpp>
-#include <vector>
+#include<vector>
 
 int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix);
 std::vector<int> rowReduction(CostMatrix &reducedMatrix);
@@ -12,10 +12,10 @@ std::vector<int> columnReduction(CostMatrix &reducedMatrix);
 
 TSPResult BranchAndBound::solve(CostMatrix &costs){
 
-    NodesHeap liveNodes;
+    NodesMinHeap liveNodes;
     std::vector<int> path;
 
-    Node* root = makeNode(costs, path, 0, -1, 0);
+    Node* root = new Node(costs, path);
     root->lowerBoundCost = ReduceMatrixAndCalculateCost(root->reducedCostMatrix);
     liveNodes.push(root);
     int currentCity = 0;
@@ -37,8 +37,13 @@ TSPResult BranchAndBound::solve(CostMatrix &costs){
             if (bestNode->reducedCostMatrix[currentCity][city] != INF)
             {
 
-                Node* child = makeNode(bestNode->reducedCostMatrix, bestNode->path,
-                    bestNode->level + 1, currentCity, city);
+                Node* child = new Node(
+                    bestNode->reducedCostMatrix, 
+                    bestNode->path,
+                    bestNode->level + 1, 
+                    currentCity, 
+                    city
+                );
 
                 int currentCost = bestNode->lowerBoundCost;
                 int currentEdgeCost = bestNode->reducedCostMatrix[currentCity][city];

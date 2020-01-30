@@ -3,7 +3,7 @@
 #include<vector>
 #include<string>
 
-typedef  std::vector<std::vector<int>> CostMatrix;
+using CostMatrix = std::vector<std::vector<int>>;
 
 CostMatrix readMatrixFromFile(const std::string &fileName);
 void printMatrix(const CostMatrix& costMatrix);
