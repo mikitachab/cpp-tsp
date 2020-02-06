@@ -48,6 +48,7 @@ TSPResult BranchAndBound::solve(CostMatrix &costs){
                 int currentCost = bestNode->lowerBoundCost;
                 int currentEdgeCost = bestNode->reducedCostMatrix[currentCity][city];
                 int cityLowerBound = ReduceMatrixAndCalculateCost(child->reducedCostMatrix); 
+        
                 int lowerBound = currentCost + currentEdgeCost + cityLowerBound;
                 
                 child->lowerBoundCost = lowerBound;
@@ -57,6 +58,7 @@ TSPResult BranchAndBound::solve(CostMatrix &costs){
 
         delete bestNode;
     }
+    return TSPResult{}; 
 }
 
 int ReduceMatrixAndCalculateCost(CostMatrix &reducedMatrix)

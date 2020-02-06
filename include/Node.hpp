@@ -27,5 +27,5 @@ struct Node
     friend bool operator<(const Node& lhs, const Node& rhs);
 };
 
-using NodesMinHeap = std::priority_queue<Node*, std::vector<Node*>, std::greater<std::vector<Node*>::value_type>>;
+using NodesMinHeap = std::priority_queue<Node*, std::vector<Node*>, std::greater<Node*>>;
 
